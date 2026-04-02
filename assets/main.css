@@ -1,0 +1,100 @@
+* {
+    font-family: "Chakra Petch";
+    font-size: 16pt;
+}
+
+:root {
+    color: var(--text);
+    background-image: repeating-linear-gradient(
+        45deg,
+        var(--base0) 0% 5%,
+        var(--base) 5% 45%,
+        var(--base0) 45% 55%,
+        var(--base) 55% 95%,
+        var(--base0) 95% 100%
+    );
+    background-size: 10px 10px;
+
+    margin: 30px;
+}
+
+h1 {
+    font-size: 48pt;
+    margin: 0px;
+
+    text-shadow:
+        2px 2px var(--base),
+        6px 6px var(--shadow);
+}
+
+h3 {
+    font-size: 24pt;
+    margin: 0px;
+
+    color: var(--subtext0);
+    text-shadow: 2px 2px var(--base);
+}
+
+a,
+button {
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+
+    color: var(--text);
+    background-color: var(--surface);
+    text-decoration: none;
+    font-weight: 700;
+
+    box-shadow:
+        0px 0px var(--base),
+        0px 0px var(--shadow);
+
+    transition:
+        padding-bottom 100ms,
+        color 100ms,
+        background-color 100ms,
+        box-shadow 100ms,
+        transform 25ms linear;
+}
+
+a:hover,
+button:hover {
+    color: var(--surface);
+    background-color: var(--text);
+
+    box-shadow:
+        2px 2px var(--base),
+        6px 6px var(--shadow);
+
+    transform: translate(-2px, -2px);
+}
+
+a:hover {
+    padding-bottom: 20px;
+}
+
+a:active,
+button:active {
+    background-color: var(--text-black);
+
+    transform: translate(-2px, 4px);
+}
+
+#navbar {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+
+    min-height: 64px;
+}
+
+#navbar #to-home {
+    width: 150px;
+}
+
+::selection {
+    background-color: var(--selection);
+}

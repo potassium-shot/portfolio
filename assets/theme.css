@@ -1,0 +1,15 @@
+:root {
+    --base: #d7d0b8;
+    --base0: #c0b8a2;
+
+    --surface: #b0ac94;
+    --surface2: #777565;
+
+    --text-black: #2b2925;
+    --text: #413f3a;
+    --subtext: #49483d;
+
+    --shadow: #b0ac94;
+
+    --selection: #bd7f68;
+}
