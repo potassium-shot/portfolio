@@ -1,0 +1,7 @@
+(
+    name: Loc(
+        en_us: "School",
+        fr_fr: "École",
+    ),
+    color: Theme("purple"),
+)

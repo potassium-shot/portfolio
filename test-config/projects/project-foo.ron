@@ -1,0 +1,28 @@
+(
+    name: Loc(
+        en_us: "Foo Project",
+        fr_fr: "Projet Foo",
+    ),
+    technologies: [
+        "unity",
+        "csharp",
+    ],
+    tags: [
+        "test",
+        "school",
+    ],
+    short_description: Loc(
+        en_us: "A test school project made in Unity.",
+        fr_fr: "Un projet d'école de teste fait avec Unity.",
+    ),
+    description: Loc(
+        en_us: "
+This project is one of the projects of all time.
+It was made in Unity because Unity is one of the game engines.
+        ",
+        fr_fr: "
+Ce project est un des projets de tous les temps.
+Il est fait sur Unity, car Unity est un des moteurs de jeu.
+        ",
+    ),
+)

@@ -1,0 +1,7 @@
+(
+    name: Loc(
+        en_us: "Test",
+        fr_fr: "Teste",
+    ),
+    color: Theme("purple"),
+)

@@ -9,7 +9,7 @@
     --text: #413f3a;
     --subtext: #49483d;
 
-    --shadow: #b0ac94;
+    --shadow: rgba(176, 172, 148, 0.6);
 
     --selection: #bd7f68;
 }

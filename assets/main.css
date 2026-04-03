@@ -4,6 +4,9 @@
 }
 
 :root {
+    display: flex;
+    flex-direction: column;
+
     color: var(--text);
     background-image: repeating-linear-gradient(
         45deg,
@@ -14,8 +17,14 @@
         var(--base0) 95% 100%
     );
     background-size: 10px 10px;
+}
 
-    margin: 30px;
+body {
+    margin: 0px;
+}
+
+#navbar ~ * {
+    padding: 8px 32px;
 }
 
 h1 {
@@ -44,7 +53,7 @@ button {
     border: none;
 
     color: var(--text);
-    background-color: var(--surface);
+    background-color: color-mix(var(--surface) 60%, transparent);
     text-decoration: none;
     font-weight: 700;
 
@@ -72,7 +81,7 @@ button:hover {
     transform: translate(-2px, -2px);
 }
 
-a:hover {
+#navbar > a:hover {
     padding-bottom: 20px;
 }
 
@@ -80,15 +89,22 @@ a:active,
 button:active {
     background-color: var(--text-black);
 
-    transform: translate(-2px, 4px);
+    transform: translate(-2px, 2px);
 }
 
 #navbar {
     display: flex;
+    flex-grow: 1;
     align-items: start;
     justify-content: start;
+    min-height: 54px;
+    padding: 32px 32px;
 
-    min-height: 64px;
+    border-style: double;
+    border-width: 0px 0px 6px 0px;
+
+    border-color: var(--text);
+    background-color: color-mix(var(--surface) 30%, transparent);
 }
 
 #navbar #to-home {
@@ -96,5 +112,5 @@ button:active {
 }
 
 ::selection {
-    background-color: var(--selection);
+    background-color: color-mix(var(--selection) 67%, transparent);
 }

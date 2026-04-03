@@ -1,9 +1,11 @@
-use dioxus::prelude::*;
+use crate::prelude::*;
 
 mod assets;
+mod data;
 mod home;
 mod navbar;
 mod prelude;
+mod utils;
 
 use home::Home;
 
@@ -16,7 +18,7 @@ enum Route {
 }
 
 fn main() {
-    dioxus::launch(App);
+    dioxus::LaunchBuilder::new().launch(App);
 }
 
 #[component]
