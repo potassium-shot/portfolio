@@ -1,7 +1,9 @@
-use crate::prelude::*;
+use crate::{data::PortfolioData, prelude::*};
 
+mod api;
 mod assets;
 mod data;
+mod elements;
 mod home;
 mod navbar;
 mod prelude;
@@ -21,8 +23,19 @@ fn main() {
     dioxus::LaunchBuilder::new().launch(App);
 }
 
+type PortfolioContext = Resource<Result<PortfolioDataView, ServerFnError>>;
+
 #[component]
 fn App() -> Element {
+    let portfolio: PortfolioContext = use_resource(move || async move {
+        crate::api::fetch_portfolio_data()
+            .await
+            .map(PortfolioData::into_view)
+    });
+    use_context_provider(move || portfolio);
+
+    use_context_provider(move || Lang::EnUs);
+
     rsx! {
         document::Link { rel: "preconnect", href: "https://fonts.googleapis.com" }
         document::Link { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }
@@ -34,6 +47,8 @@ fn App() -> Element {
         document::Link { rel: "stylesheet", href: assets::FONT_CSS }
         document::Link { rel: "stylesheet", href: assets::MAIN_CSS }
         document::Link { rel: "stylesheet", href: assets::THEME_CSS }
+        document::Link { rel: "stylesheet", href: assets::PROJECT_CARD_CSS }
+        document::Link { rel: "stylesheet", href: assets::TAGS_CSS }
         Router::<Route> {}
     }
 }

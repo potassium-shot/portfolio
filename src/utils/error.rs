@@ -35,9 +35,25 @@ impl dioxus::fullstack::response::IntoResponse for Error {
     }
 }
 
+impl dioxus::fullstack::AsStatusCode for Error {
+    fn as_status_code(&self) -> StatusCode {
+        StatusCode::from_u16(self.http_code).unwrap()
+    }
+}
+
+impl From<Error> for dioxus::fullstack::ServerFnError {
+    fn from(value: Error) -> Self {
+        Self::ServerError {
+            message: value.inner.to_string(),
+            code: value.http_code,
+            details: None,
+        }
+    }
+}
+
 #[derive(serde::Serialize)]
 struct ErrorJson {
     error: String,
 }
 
-pub type Result<T> = std::result::Result<T, Error>;
+pub type Result<T, E = Error> = std::result::Result<T, E>;

@@ -10,6 +10,27 @@
     --subtext: #49483d;
 
     --shadow: rgba(176, 172, 148, 0.6);
+    --shadow-black: rgba(65, 63, 58, 0.6);
 
     --selection: #bd7f68;
+
+    --white: #dddbd2;
+    --grey: #7c7a74;
+    --black: #23221d;
+
+    --red: #cc5f59;
+    --orange: #cc7f59;
+    --yellow: #cca759;
+    --green: #58ce66;
+    --cyan: #6ad1be;
+    --blue: #6474c1;
+    --purple: #9364bc;
+
+    --red-dark: #a3413c;
+    --orange-dark: #a85d37;
+    --yellow-dark: #aa832e;
+    --green-dark: #2ea53c;
+    --cyan-dark: #3ead99;
+    --blue-dark: #3a4ca3;
+    --purple-dark: #7d53a3;
 }

@@ -1,0 +1,27 @@
+#tag {
+    color: var(--base);
+    padding: 0px 10px;
+    margin-right: 8px;
+    background-image: linear-gradient(
+        to right,
+        var(--text) 0%,
+        var(--text) 3px,
+        var(--l-tag-color) 3px,
+        var(--l-tag-color) 6px,
+        var(--text) 6px,
+        var(--text) calc(100% - 6px),
+        var(--l-tag-color) calc(100% - 6px),
+        var(--l-tag-color) calc(100% - 3px),
+        var(--text) calc(100% - 3px),
+        var(--text) 100%
+    );
+
+    box-shadow:
+        1px 1px var(--surface),
+        3px 3px var(--shadow-black);
+}
+
+#tag > #hashtag {
+    color: color-mix(var(--base) 30%, transparent);
+    font-size: 12pt;
+}

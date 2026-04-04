@@ -1,3 +1,5 @@
+#[cfg(feature = "server")]
+use std::collections::HashMap;
 use std::{path::PathBuf, sync::LazyLock};
 
 use crate::prelude::*;
@@ -11,7 +13,8 @@ pub struct Tag {
 }
 
 impl Tag {
-    pub fn load_all() -> Result<Vec<Self>> {
+    #[cfg(feature = "server")]
+    pub fn load_all() -> Result<HashMap<String, Self>> {
         super::load_all_in_dir(&PATH)
     }
 }

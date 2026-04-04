@@ -1,0 +1,14 @@
+#project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    background-color: color-mix(var(--surface) 50%, transparent);
+}
+
+#project-card p {
+    display: flex;
+    flex-direction: row;
+    border-top: 2px dashed var(--text);
+    margin: 4px;
+    padding: 8px;
+}

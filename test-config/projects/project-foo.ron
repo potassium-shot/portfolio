@@ -3,11 +3,9 @@
         en_us: "Foo Project",
         fr_fr: "Projet Foo",
     ),
-    technologies: [
+    tags: [
         "unity",
         "csharp",
-    ],
-    tags: [
         "test",
         "school",
     ],

@@ -3,5 +3,5 @@
         en_us: "School",
         fr_fr: "École",
     ),
-    color: Theme("purple"),
+    color: Theme("purple-dark"),
 )
