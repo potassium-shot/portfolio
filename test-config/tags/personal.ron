@@ -1,0 +1,7 @@
+(
+    name: Loc(
+        en_us: "Personal",
+        fr_fr: "Personnel",
+    ),
+    color: Theme("purple-dark"),
+)

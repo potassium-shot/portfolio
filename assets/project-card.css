@@ -6,9 +6,20 @@
 }
 
 #project-card p {
-    display: flex;
-    flex-direction: row;
     border-top: 2px dashed var(--text);
     margin: 4px;
     padding: 8px;
+}
+
+#project-card-placeholder {
+    display: flex;
+    background-image: var(--placeholder-background);
+    background-repeat: repeat-x;
+    background-size: 400px 100%;
+    animation: placeholder-anim 1.5s linear infinite;
+
+    min-height: 6rem;
+}
+
+@media screen and (max-width: 800px) {
 }

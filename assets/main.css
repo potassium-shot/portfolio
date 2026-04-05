@@ -70,7 +70,8 @@ button {
 }
 
 a:hover,
-button:hover {
+button:hover,
+a.current-route {
     color: var(--surface);
     background-color: var(--text);
 
@@ -81,7 +82,8 @@ button:hover {
     transform: translate(-2px, -2px);
 }
 
-#navbar > a:hover {
+#navbar > a:hover,
+#navbar > a.current-route {
     padding-bottom: 20px;
 }
 
@@ -109,6 +111,18 @@ button:active {
 
 #navbar #to-home {
     width: 150px;
+}
+
+#background-banana {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: -100;
+    width: 384px;
+    height: 512px;
+
+    background-color: var(--base);
+    mask-mode: luminance;
 }
 
 ::selection {

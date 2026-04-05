@@ -1,3 +1,9 @@
 #top-section {
     margin-top: 25px;
 }
+
+#project-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}

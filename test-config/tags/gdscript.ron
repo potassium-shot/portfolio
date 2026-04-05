@@ -1,0 +1,4 @@
+(
+    name: Unloc("Gd Script"),
+    color: Theme("green-dark"),
+)

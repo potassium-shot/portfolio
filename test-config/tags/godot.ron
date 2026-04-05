@@ -1,0 +1,4 @@
+(
+    name: Unloc("Godot"),
+    color: Theme("red-dark"),
+)

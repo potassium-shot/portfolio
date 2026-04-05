@@ -11,7 +11,7 @@ mod utils;
 
 use home::Home;
 
-#[derive(Debug, Clone, Routable, PartialEq)]
+#[derive(Routable, kinded::Kinded, Clone, PartialEq, Eq, Debug)]
 #[rustfmt::skip]
 enum Route {
     #[layout(navbar::Navbar)]
@@ -49,6 +49,12 @@ fn App() -> Element {
         document::Link { rel: "stylesheet", href: assets::THEME_CSS }
         document::Link { rel: "stylesheet", href: assets::PROJECT_CARD_CSS }
         document::Link { rel: "stylesheet", href: assets::TAGS_CSS }
+
+        div {
+            id: "background-banana",
+            style: "mask-image: url({assets::BANANA.resolve().to_string_lossy().into_owned()})",
+        }
+
         Router::<Route> {}
     }
 }

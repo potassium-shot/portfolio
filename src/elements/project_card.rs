@@ -21,6 +21,8 @@ pub fn ProjectCard(project: ProjectView) -> Element {
                     Tag {
                         tag: tag,
                     }
+
+                    span { " " }
                 }
 
                 span {

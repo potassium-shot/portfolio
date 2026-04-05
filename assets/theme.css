@@ -33,4 +33,23 @@
     --cyan-dark: #3ead99;
     --blue-dark: #3a4ca3;
     --purple-dark: #7d53a3;
+
+    --placeholder-background: repeating-linear-gradient(
+        45deg,
+        var(--shadow) 0%,
+        var(--shadow) 40%,
+        var(--surface) 40%,
+        var(--surface) 60%,
+        var(--shadow) 60%,
+        var(--shadow) 100%
+    );
+}
+
+@keyframes placeholder-anim {
+    0% {
+        background-position-x: 0px;
+    }
+    100% {
+        background-position-x: 400px;
+    }
 }
