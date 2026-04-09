@@ -11,6 +11,7 @@ pub struct Project {
     pub name: LocString,
     pub tags: Vec<String>,
     pub short_description: LocString,
+    pub images: Vec<String>,
     pub description: LocString,
 }
 

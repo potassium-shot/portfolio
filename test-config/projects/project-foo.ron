@@ -13,6 +13,11 @@
         en_us: "A test school project made in Unity.",
         fr_fr: "Un projet d'école de teste fait avec Unity.",
     ),
+    images: [
+        "test-image-01",
+        "test-image-01",
+        "test-image-01",
+    ],
     description: Loc(
         en_us: "
 This project is one of the projects of all time.

@@ -6,6 +6,8 @@ use std::{
 
 use crate::prelude::*;
 
+#[cfg(feature = "server")]
+pub mod image;
 pub mod project;
 pub mod tag;
 

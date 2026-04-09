@@ -12,6 +12,12 @@
         en_us: "It's a bar project.",
         fr_fr: "C'est un projet bar.",
     ),
+    images: [
+        "test-image-01",
+        "test-image-01",
+        "test-image-01",
+        "test-image-01",
+    ],
     description: Loc(
         en_us: "The project is a bar project, and it's different from Foo project.",
         fr_fr: "Ce project est un project bar, et il est différent du projet Foo.",

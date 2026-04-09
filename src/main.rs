@@ -20,6 +20,9 @@ enum Route {
 }
 
 fn main() {
+    #[cfg(feature = "server")]
+    crate::data::image::lazy_load();
+
     dioxus::LaunchBuilder::new().launch(App);
 }
 
@@ -33,7 +36,6 @@ fn App() -> Element {
             .map(PortfolioData::into_view)
     });
     use_context_provider(move || portfolio);
-
     use_context_provider(move || Lang::EnUs);
 
     rsx! {
