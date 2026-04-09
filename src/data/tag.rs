@@ -10,6 +10,7 @@ static PATH: LazyLock<PathBuf> = LazyLock::new(|| super::CONFIG_PATH.join("tags"
 pub struct Tag {
     pub name: LocString,
     pub color: PortfolioColor,
+    pub order: i32,
 }
 
 impl Tag {

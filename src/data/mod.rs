@@ -4,6 +4,8 @@ use std::{
     sync::{Arc, LazyLock},
 };
 
+use itertools::Itertools;
+
 use crate::prelude::*;
 
 #[cfg(feature = "server")]
@@ -66,6 +68,7 @@ impl PortfolioData {
                 self.tags
                     .into_iter()
                     .map(|(id, tag)| (id, Arc::new(tag)))
+                    .sorted_by(|(_, a), (_, b)| a.order.cmp(&b.order))
                     .collect(),
             ),
         }

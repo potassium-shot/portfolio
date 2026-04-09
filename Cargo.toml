@@ -9,6 +9,7 @@ anyhow = "1.0.102"
 dioxus = { version = "0.7.1", features = ["router", "fullstack"] }
 gloo-timers = { version = "0.4.0", features = ["futures"], optional = true }
 image = { version = "0.25.10", default-features = false, features = ["rayon", "png", "jpeg", "gif", "webp"], optional = true }
+itertools = "0.14.0"
 kinded = "0.5.0"
 ron = { version = "0.12.1", optional = true }
 serde = { version = "1.0.228", features = ["derive"] }

@@ -4095,6 +4095,7 @@ dependencies = [
  "dioxus",
  "gloo-timers 0.4.0",
  "image",
+ "itertools",
  "kinded",
  "ron",
  "serde",

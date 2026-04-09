@@ -1,4 +1,5 @@
 (
     name: Unloc("Godot"),
     color: Theme("red-dark"),
+    order: 10,
 )
