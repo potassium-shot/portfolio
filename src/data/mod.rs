@@ -8,6 +8,7 @@ use itertools::Itertools;
 
 use crate::prelude::*;
 
+pub mod global_config;
 #[cfg(feature = "server")]
 pub mod image;
 pub mod project;
@@ -45,6 +46,7 @@ fn load_all_in_dir<T: serde::de::DeserializeOwned>(path: &Path) -> Result<HashMa
 pub struct PortfolioData {
     pub projects: HashMap<String, project::Project>,
     pub tags: HashMap<String, tag::Tag>,
+    pub global_config: global_config::GlobalConfig,
 }
 
 impl PortfolioData {
@@ -53,6 +55,7 @@ impl PortfolioData {
         Ok(Self {
             projects: project::Project::load_all()?,
             tags: tag::Tag::load_all()?,
+            global_config: global_config::GlobalConfig::load()?,
         })
     }
 
@@ -71,17 +74,20 @@ impl PortfolioData {
                     .sorted_by(|(_, a), (_, b)| a.order.cmp(&b.order))
                     .collect(),
             ),
+            global_config: Arc::new(self.global_config),
         }
     }
 }
 
 pub type ProjectView = Arc<project::Project>;
 pub type TagView = Arc<tag::Tag>;
+pub type GlobalConfigView = Arc<global_config::GlobalConfig>;
 
 #[derive(Clone, Debug)]
 pub struct PortfolioDataView {
     pub projects: Arc<HashMap<String, ProjectView>>,
     pub tags: Arc<HashMap<String, TagView>>,
+    pub global_config: GlobalConfigView,
 }
 
 impl PortfolioDataView {

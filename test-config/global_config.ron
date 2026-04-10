@@ -1,0 +1,6 @@
+(
+    home_message: Loc(
+        en_us: "Hello, this is hell.o",
+        fr_fr: "Bonjour, c'est foubojou.r",
+    ),
+)

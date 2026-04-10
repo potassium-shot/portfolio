@@ -4,7 +4,17 @@ use crate::{PortfolioContext, elements::project_card::ProjectCard, prelude::*};
 
 #[component]
 pub fn Home() -> Element {
+    let lang = use_context::<Lang>();
     let portfolio = use_context::<PortfolioContext>();
+
+    let msg = use_memo(move || match &*portfolio.read() {
+        Some(Ok(portfolio)) => portfolio
+            .global_config
+            .home_message
+            .resolve(lang)
+            .to_string(),
+        _ => String::new(),
+    });
 
     rsx! {
         document::Link { rel: "stylesheet", href: crate::assets::HOME_CSS }
@@ -18,6 +28,11 @@ pub fn Home() -> Element {
             h3 {
                 id: "subtitle",
                 "Hello & welcome"
+            }
+
+            p {
+                id: "message",
+                "{msg}"
             }
 
             div {
