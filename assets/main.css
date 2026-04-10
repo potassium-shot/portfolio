@@ -71,7 +71,7 @@ button {
 
 a:hover,
 button:hover,
-a.current-route {
+*[data-current="true"] {
     color: var(--surface);
     background-color: var(--text);
 
@@ -82,8 +82,8 @@ a.current-route {
     transform: translate(-2px, -2px);
 }
 
-#navbar > a:hover,
-#navbar > a.current-route {
+.navbar > a:hover,
+.navbar > a[data-current="true"] {
     padding-bottom: 20px;
 }
 
@@ -94,13 +94,14 @@ button:active {
     transform: translate(-2px, 2px);
 }
 
-#navbar {
+.navbar {
     display: flex;
     flex-grow: 1;
     align-items: start;
     justify-content: start;
     min-height: 54px;
     padding: 32px 32px;
+    column-gap: 8px;
 
     border-style: double;
     border-width: 0px 0px 6px 0px;
@@ -109,8 +110,12 @@ button:active {
     background-color: color-mix(var(--surface) 30%, transparent);
 }
 
-#navbar #to-home {
+.navbar #to-home {
     width: 150px;
+}
+
+.navbar-content {
+    position: absolute;
 }
 
 #background-banana {

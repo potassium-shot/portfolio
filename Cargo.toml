@@ -7,6 +7,7 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0.102"
 dioxus = { version = "0.7.1", features = ["router", "fullstack"] }
+dioxus-primitives = { git = "https://github.com/DioxusLabs/components", version = "0.0.1", default-features = false, features = ["router"] }
 gloo-timers = { version = "0.4.0", features = ["futures"], optional = true }
 image = { version = "0.25.10", default-features = false, features = ["rayon", "png", "jpeg", "gif", "webp"], optional = true }
 itertools = "0.14.0"

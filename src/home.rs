@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 use crate::{PortfolioContext, elements::project_card::ProjectCard, prelude::*};
 
 #[component]
@@ -23,7 +25,7 @@ pub fn Home() -> Element {
 
                 match &*portfolio.read() {
                     Some(Ok(portfolio)) => rsx! {
-                        for (id, project) in portfolio.projects.iter() {
+                        for (id, project) in portfolio.projects.iter().sorted_by(|(_, a), (_, b)| a.order.cmp(&b.order)) {
                             ProjectCard {
                                 project_id: id.clone(),
                                 project: project.clone(),

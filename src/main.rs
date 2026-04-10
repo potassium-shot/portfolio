@@ -2,6 +2,7 @@ use crate::{data::PortfolioData, prelude::*};
 
 mod api;
 mod assets;
+mod components;
 mod data;
 mod elements;
 mod home;
@@ -16,7 +17,7 @@ use project_page::ProjectPage;
 #[derive(Routable, kinded::Kinded, Clone, PartialEq, Eq, Debug)]
 #[rustfmt::skip]
 enum Route {
-    #[layout(navbar::Navbar)]
+    #[layout(navbar::PortfolioNavbar)]
         #[route("/")]
         Home {},
 

@@ -22,4 +22,5 @@
         en_us: "The project is a bar project, and it's different from Foo project.",
         fr_fr: "Ce project est un project bar, et il est différent du projet Foo.",
     ),
+    order: 10,
 )

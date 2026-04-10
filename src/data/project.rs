@@ -13,6 +13,8 @@ pub struct Project {
     pub short_description: LocString,
     pub images: Vec<String>,
     pub description: LocString,
+    #[serde(default)]
+    pub order: i32,
 }
 
 impl Project {
