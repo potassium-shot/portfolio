@@ -2,7 +2,7 @@ use crate::prelude::*;
 
 #[component]
 pub fn Tag(tag: TagView) -> Element {
-    let lang = use_context::<Lang>();
+    let lang = use_context::<Signal<Lang>>();
 
     rsx! {
         span {
@@ -15,7 +15,7 @@ pub fn Tag(tag: TagView) -> Element {
             }
             span {
                 id: "name",
-                "{tag.name.resolve(lang)}"
+                "{tag.name.resolve(lang())}"
             }
         }
     }

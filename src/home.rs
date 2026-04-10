@@ -2,16 +2,25 @@ use itertools::Itertools;
 
 use crate::{PortfolioContext, elements::project_card::ProjectCard, prelude::*};
 
+pub const TITLE: LocStr = LocStr::Loc {
+    en_us: "Home",
+    fr_fr: "Accueil",
+};
+const SUBTITLE: LocStr = LocStr::Loc {
+    en_us: "Hello & welcome",
+    fr_fr: "Bonjour & bienvenue",
+};
+
 #[component]
 pub fn Home() -> Element {
-    let lang = use_context::<Lang>();
+    let lang = use_context::<Signal<Lang>>();
     let portfolio = use_context::<PortfolioContext>();
 
     let msg = use_memo(move || match &*portfolio.read() {
         Some(Ok(portfolio)) => portfolio
             .global_config
             .home_message
-            .resolve(lang)
+            .resolve(lang())
             .to_string(),
         _ => String::new(),
     });
@@ -27,7 +36,7 @@ pub fn Home() -> Element {
             }
             h3 {
                 id: "subtitle",
-                "Hello & welcome"
+                "{SUBTITLE.resolve(lang())}"
             }
 
             p {

@@ -118,6 +118,18 @@ button:active {
     position: absolute;
 }
 
+#lang-selector {
+    display: flex;
+    width: 2rem;
+    height: 1rem;
+    padding: 0px;
+}
+
+#lang-selector img {
+    display: flex;
+    flex-grow: 1;
+}
+
 #background-banana {
     position: absolute;
     right: 0px;

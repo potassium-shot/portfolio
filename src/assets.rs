@@ -16,3 +16,5 @@ pub const PROJECT_PAGE_CSS: Asset = asset!("/assets/project-page.css");
 
 pub const FAVICON: Asset = asset!("/assets/favicon.ico");
 pub const BANANA: Asset = asset!("/assets/banana-silhouette.svg");
+pub const EN_US: Asset = asset!("/assets/lang/en-us.svg");
+pub const FR_FR: Asset = asset!("/assets/lang/fr-fr.svg");

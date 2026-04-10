@@ -10,7 +10,7 @@ use crate::{
 pub fn PortfolioNavbar() -> Element {
     let route = use_route::<crate::Route>();
     let route_kind = route.kind();
-    let lang = use_context::<Lang>();
+    let mut lang = use_context::<Signal<Lang>>();
     let portfolio = use_context::<PortfolioContext>();
 
     rsx! {
@@ -20,17 +20,17 @@ pub fn PortfolioNavbar() -> Element {
                 NavbarItem {
                     id: "to-home",
                     index: 0_usize,
-                    to: Route::Home {},
+                    to: Route::Home,
                     value: "home",
                     "data-current": route_kind == RouteKind::Home,
-                    "Home"
+                    "{crate::home::TITLE.resolve(lang())}"
                 }
 
                 NavbarNav {
                     index: 1_usize,
                     NavbarTrigger {
                         "data-current": route_kind == RouteKind::ProjectPage,
-                        "Projects"
+                        "{crate::project_page::TITLE.resolve(lang())}"
                     }
                     NavbarContent {
                         class: "navbar-content",
@@ -43,12 +43,40 @@ pub fn PortfolioNavbar() -> Element {
                                         to: Route::ProjectPage { project: String::from(id) },
                                         value: id,
                                         "data-current": matches!(&route, Route::ProjectPage { project } if project.as_str() == id),
-                                        "{project.name.resolve(lang)}"
+                                        "{project.name.resolve(lang())}"
                                     }
                                 }
                             },
                             _ => rsx! {},
                         }
+                    }
+                }
+
+                NavbarItem {
+                    index: 2_usize,
+                    to: Route::AboutMe,
+                    value: "about-me",
+                    "data-current": route_kind == RouteKind::AboutMe,
+                    "{crate::about_me::TITLE.resolve(lang())}"
+                }
+
+                div { flex_grow: 1 }
+
+                button {
+                    id: "lang-selector",
+                    onclick: move |_| {
+                        lang.set(match lang() {
+                            Lang::EnUs => Lang::FrFr,
+                            Lang::FrFr => Lang::EnUs,
+                        });
+                    },
+                    "data-lang": "{lang()}",
+
+                    img {
+                        src: {match lang() {
+                            Lang::EnUs => crate::assets::FR_FR,
+                            Lang::FrFr => crate::assets::EN_US,
+                        }}
                     }
                 }
             }

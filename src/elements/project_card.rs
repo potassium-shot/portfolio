@@ -5,7 +5,7 @@ use crate::{
 
 #[component]
 pub fn ProjectCard(project_id: String, project: ProjectView) -> Element {
-    let lang = use_context::<Lang>();
+    let lang = use_context::<Signal<Lang>>();
     let portfolio = use_context::<PortfolioContext>();
 
     let tags = project
@@ -23,7 +23,7 @@ pub fn ProjectCard(project_id: String, project: ProjectView) -> Element {
                 Link {
                     id: "title",
                     to: Route::ProjectPage { project: project_id },
-                    "{project.name.resolve(lang)}"
+                    "{project.name.resolve(lang())}"
                 }
 
                 p {
@@ -37,7 +37,7 @@ pub fn ProjectCard(project_id: String, project: ProjectView) -> Element {
 
                     span {
                         id: "short-description",
-                        "{project.short_description.resolve(lang)}"
+                        "{project.short_description.resolve(lang())}"
                     }
                 }
             }

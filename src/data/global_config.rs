@@ -3,6 +3,7 @@ use crate::prelude::*;
 #[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, Eq, Debug)]
 pub struct GlobalConfig {
     pub home_message: LocString,
+    pub about_me: LocString,
 }
 
 impl GlobalConfig {

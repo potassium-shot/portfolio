@@ -1,5 +1,10 @@
 use crate::{elements::carrousel::Carrousel, prelude::*};
 
+pub const TITLE: LocStr = LocStr::Loc {
+    en_us: "Projects",
+    fr_fr: "Projets",
+};
+
 #[component]
 pub fn ProjectPage(project: String) -> Element {
     let portfolio = use_context::<PortfolioContext>();
@@ -30,7 +35,7 @@ pub fn ProjectPage(project: String) -> Element {
 
 #[component]
 fn ProjectPageContent(project: ProjectView) -> Element {
-    let lang = use_context::<Lang>();
+    let lang = use_context::<Signal<Lang>>();
 
     rsx! {
         div {
@@ -38,7 +43,7 @@ fn ProjectPageContent(project: ProjectView) -> Element {
 
             h1 {
                 id: "title",
-                "{project.name.resolve(lang)}"
+                "{project.name.resolve(lang())}"
             }
 
             Carrousel {
@@ -48,7 +53,7 @@ fn ProjectPageContent(project: ProjectView) -> Element {
 
             p {
                 id: "description",
-                "{project.description.resolve(lang)}"
+                "{project.description.resolve(lang())}"
             }
         }
     }

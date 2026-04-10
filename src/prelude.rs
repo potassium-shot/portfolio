@@ -3,11 +3,11 @@
 pub use dioxus::prelude::*;
 
 pub(crate) use crate::{
+    PortfolioContext, Route,
     data::{PortfolioDataView, ProjectView, TagView},
     utils::{
         color::PortfolioColor,
         error::{Error, Result, ResultExt},
-        loc_string::{Lang, LocString},
+        loc_string::{Lang, LocStr, LocString},
     },
-    PortfolioContext, Route,
 };

@@ -1,5 +1,6 @@
 use crate::{data::PortfolioData, prelude::*};
 
+mod about_me;
 mod api;
 mod assets;
 mod components;
@@ -11,6 +12,7 @@ mod prelude;
 mod project_page;
 mod utils;
 
+use about_me::AboutMe;
 use home::Home;
 use project_page::ProjectPage;
 
@@ -19,10 +21,13 @@ use project_page::ProjectPage;
 enum Route {
     #[layout(navbar::PortfolioNavbar)]
         #[route("/")]
-        Home {},
+        Home,
 
         #[route("/project/:project")]
         ProjectPage { project: String },
+
+        #[route("/about-me")]
+        AboutMe,
 }
 
 fn main() {
@@ -42,7 +47,8 @@ fn App() -> Element {
             .map(PortfolioData::into_view)
     });
     use_context_provider(move || portfolio);
-    use_context_provider(move || Lang::EnUs);
+    let lang = use_signal(move || Lang::EnUs);
+    use_context_provider(move || lang);
 
     rsx! {
         document::Link { rel: "preconnect", href: "https://fonts.googleapis.com" }
