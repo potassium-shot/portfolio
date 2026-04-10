@@ -1,2 +1,3 @@
+pub mod carrousel;
 pub mod project_card;
 pub mod tag;

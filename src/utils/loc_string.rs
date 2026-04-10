@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 #[derive(serde::Serialize, serde::Deserialize, Clone, PartialEq, Eq, Debug)]
 pub enum LocString {
     Loc { en_us: String, fr_fr: String },
@@ -25,5 +27,17 @@ impl LocString {
 impl Default for LocString {
     fn default() -> Self {
         Self::Unloc(String::default())
+    }
+}
+
+impl FromStr for Lang {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "en" => Ok(Self::EnUs),
+            "fr" => Ok(Self::FrFr),
+            _ => Err(()),
+        }
     }
 }

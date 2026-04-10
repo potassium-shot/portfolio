@@ -1,4 +1,4 @@
-use crate::{prelude::*, RouteKind};
+use crate::{RouteKind, prelude::*};
 
 #[component]
 pub fn Navbar() -> Element {

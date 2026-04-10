@@ -3,6 +3,7 @@ use std::time::Duration;
 pub mod color;
 pub mod error;
 pub mod loc_string;
+pub mod macros;
 
 #[cfg(feature = "web")]
 pub async fn sleep(dur: Duration) {

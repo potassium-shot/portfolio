@@ -15,7 +15,7 @@ pub fn Home() -> Element {
             }
             h3 {
                 id: "subtitle",
-                "Portfolio"
+                "Hello & welcome"
             }
 
             div {
@@ -23,9 +23,10 @@ pub fn Home() -> Element {
 
                 match &*portfolio.read() {
                     Some(Ok(portfolio)) => rsx! {
-                        for project in portfolio.projects.values().cloned() {
+                        for (id, project) in portfolio.projects.iter() {
                             ProjectCard {
-                                project: project,
+                                project_id: id.clone(),
+                                project: project.clone(),
                             }
                         }
                     },

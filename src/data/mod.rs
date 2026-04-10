@@ -85,6 +85,10 @@ pub struct PortfolioDataView {
 }
 
 impl PortfolioDataView {
+    pub fn find_project(&self, project: &str) -> Option<ProjectView> {
+        self.projects.get(project).cloned()
+    }
+
     pub fn find_tag(&self, tag: &str) -> Option<TagView> {
         self.tags.get(tag).cloned()
     }
