@@ -1,4 +1,7 @@
-use crate::{elements::carrousel::Carrousel, prelude::*};
+use crate::{
+    elements::{carrousel::Carrousel, tag::Tag},
+    prelude::*,
+};
 
 pub const TITLE: LocStr = LocStr::Loc {
     en_us: "Projects",
@@ -36,14 +39,30 @@ pub fn ProjectPage(project: String) -> Element {
 #[component]
 fn ProjectPageContent(project: ProjectView) -> Element {
     let lang = use_context::<Signal<Lang>>();
+    let portfolio = use_context::<PortfolioContext>();
+
+    let tags = project
+        .tags
+        .iter()
+        .flat_map(|tag| portfolio.unwrap().unwrap().find_tag(tag.as_str()));
 
     rsx! {
         div {
             id: "project-page",
 
-            h1 {
-                id: "title",
-                "{project.name.resolve(lang())}"
+            div {
+                id: "title-bar",
+
+                h1 {
+                    id: "title",
+                    "{project.name.resolve(lang())}"
+                }
+
+                for tag in tags {
+                    Tag {
+                        tag: tag,
+                    }
+                }
             }
 
             Carrousel {
