@@ -7,8 +7,30 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#title-bar #tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 #title-bar h1 {
     margin-right: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    #project-page #carrousel {
+        height: unset;
+    }
+
+    #title-bar {
+        flex-direction: column;
+    }
+
+    #title-bar h1 {
+        margin-right: 0rem;
+    }
 }

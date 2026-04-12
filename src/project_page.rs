@@ -58,9 +58,13 @@ fn ProjectPageContent(project: ProjectView) -> Element {
                     "{project.name.resolve(lang())}"
                 }
 
-                for tag in tags {
-                    Tag {
-                        tag: tag,
+                span {
+                    id: "tags",
+
+                    for tag in tags {
+                        Tag {
+                            tag: tag,
+                        }
                     }
                 }
             }

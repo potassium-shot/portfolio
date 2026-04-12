@@ -17,10 +17,28 @@ pub fn Carrousel(images: Vec<String>, size: &'static str) -> Element {
 
     let image_count = images.len();
 
-    let mut carrousel_offset = use_signal(|| 0.0_f32);
+    let mut carrousel_current_image = use_signal(|| 0_usize);
+    let mut image_container_size = use_signal(|| 0.0_f64);
+    let images_size = use_signal(|| Rc::new(RefCell::new(vec![0.0_f64; image_count])));
+    let seperator_size = use_memo(move || {
+        if image_count > 1 {
+            (image_container_size() - images_size().borrow().iter().copied().sum::<f64>())
+                / ((image_count - 1) as f64)
+        } else {
+            0.0_f64
+        }
+    });
 
-    let mut image_container_element: Signal<Option<Rc<MountedData>>> = use_signal(|| None);
-    let image_elements = use_signal(|| Rc::new(RefCell::new(Vec::<Rc<MountedData>>::new())));
+    let carrousel_offset = use_memo(move || {
+        let i = carrousel_current_image();
+        let sep = seperator_size();
+        -images_size()
+            .borrow()
+            .iter()
+            .take(i)
+            .map(|size| *size + sep)
+            .sum::<f64>()
+    });
 
     let (skip_tx, skip_rx) = tokio::sync::mpsc::channel::<()>(1);
     let skip_tx = use_signal(|| skip_tx);
@@ -28,48 +46,6 @@ pub fn Carrousel(images: Vec<String>, size: &'static str) -> Element {
 
     use_future(move || async move {
         let mut skip_rx = skip_rx().take().unwrap();
-
-        loop {
-            sleep(Duration::from_millis(100)).await;
-
-            if let Ok(elements) = image_elements().try_borrow()
-                && elements.len() == image_count
-                && image_container_element().is_some()
-            {
-                break;
-            }
-        }
-
-        let full_width = image_container_element()
-            .unwrap()
-            .get_client_rect()
-            .await
-            .unwrap()
-            .width();
-
-        let image_elements = image_elements()
-            .borrow()
-            .iter()
-            .cloned()
-            .collect::<Vec<_>>();
-
-        let mut image_widths = Vec::new();
-
-        for image_element in image_elements {
-            image_widths.push(
-                image_element
-                    .get_client_rect()
-                    .await
-                    .map(|rect| rect.width())
-                    .unwrap_or(0.0),
-            );
-        }
-
-        let total_width = image_widths.iter().copied().sum::<f64>();
-        let sep = (full_width - total_width) / ((image_widths.len() - 1) as f64);
-
-        image_widths.pop();
-
         let mut last_swap_was_manual = false;
 
         let mut wait = async || {
@@ -83,14 +59,9 @@ pub fn Carrousel(images: Vec<String>, size: &'static str) -> Element {
             }
         };
 
-        loop {
-            for width in image_widths.iter().copied() {
-                wait().await;
-                carrousel_offset.set(carrousel_offset() + (width + sep) as f32);
-            }
-
+        for i in (0..image_count).cycle().skip(1) {
             wait().await;
-            carrousel_offset.set(0.0);
+            carrousel_current_image.set(i);
         }
     });
 
@@ -101,13 +72,21 @@ pub fn Carrousel(images: Vec<String>, size: &'static str) -> Element {
 
             div {
                 id: "images",
-                style: "transform: translate(-{carrousel_offset}px, 0px);",
-                onmount: move |element| image_container_element.set(Some(element.data())),
+                style: "transform: translate({carrousel_offset}px);",
+                onresize: move |event| {
+                    if let Ok(size) = event.get_content_box_size() {
+                        image_container_size.set(size.width);
+                    }
+                },
 
-                for image in image_urls {
+                for (i, image) in image_urls.into_iter().enumerate() {
                     img {
                         src: "{image}",
-                        onmount: move |element| image_elements().borrow_mut().push(element.data()),
+                        onresize: move |event| {
+                            if let Ok(size) = event.get_content_box_size() {
+                                images_size().borrow_mut()[i] = size.width;
+                            }
+                        },
                     }
                 }
             }

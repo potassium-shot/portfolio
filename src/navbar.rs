@@ -17,47 +17,51 @@ pub fn PortfolioNavbar() -> Element {
         div {
             id: "navbar",
             Navbar {
-                NavbarItem {
-                    id: "to-home",
-                    index: 0_usize,
-                    to: Route::Home,
-                    value: "home",
-                    "data-current": route_kind == RouteKind::Home,
-                    "{crate::home::TITLE.resolve(lang())}"
-                }
+                div {
+                    id: "navbar-items",
 
-                NavbarNav {
-                    index: 1_usize,
-                    NavbarTrigger {
-                        "data-current": route_kind == RouteKind::ProjectPage,
-                        "{crate::project_page::TITLE.resolve(lang())}"
+                    NavbarItem {
+                        id: "to-home",
+                        index: 0_usize,
+                        to: Route::Home,
+                        value: "home",
+                        "data-current": route_kind == RouteKind::Home,
+                        "{crate::home::TITLE.resolve(lang())}"
                     }
-                    NavbarContent {
-                        class: "navbar-content",
 
-                        match &*portfolio.read() {
-                            Some(Ok(portfolio)) => rsx! {
-                                for (i, (id, project)) in portfolio.projects.iter().sorted_by(|(_, a), (_, b)| a.order.cmp(&b.order)).enumerate() {
-                                    NavbarItem {
-                                        index: i,
-                                        to: Route::ProjectPage { project: String::from(id) },
-                                        value: id,
-                                        "data-current": matches!(&route, Route::ProjectPage { project } if project.as_str() == id),
-                                        "{project.name.resolve(lang())}"
+                    NavbarNav {
+                        index: 1_usize,
+                        NavbarTrigger {
+                            "data-current": route_kind == RouteKind::ProjectPage,
+                            "{crate::project_page::TITLE.resolve(lang())}"
+                        }
+                        NavbarContent {
+                            class: "navbar-content",
+
+                            match &*portfolio.read() {
+                                Some(Ok(portfolio)) => rsx! {
+                                    for (i, (id, project)) in portfolio.projects.iter().sorted_by(|(_, a), (_, b)| a.order.cmp(&b.order)).enumerate() {
+                                        NavbarItem {
+                                            index: i,
+                                            to: Route::ProjectPage { project: String::from(id) },
+                                            value: id,
+                                            "data-current": matches!(&route, Route::ProjectPage { project } if project.as_str() == id),
+                                            "{project.name.resolve(lang())}"
+                                        }
                                     }
-                                }
-                            },
-                            _ => rsx! {},
+                                },
+                                _ => rsx! {},
+                            }
                         }
                     }
-                }
 
-                NavbarItem {
-                    index: 2_usize,
-                    to: Route::AboutMe,
-                    value: "about-me",
-                    "data-current": route_kind == RouteKind::AboutMe,
-                    "{crate::about_me::TITLE.resolve(lang())}"
+                    NavbarItem {
+                        index: 2_usize,
+                        to: Route::AboutMe,
+                        value: "about-me",
+                        "data-current": route_kind == RouteKind::AboutMe,
+                        "{crate::about_me::TITLE.resolve(lang())}"
+                    }
                 }
 
                 div { flex_grow: 1 }

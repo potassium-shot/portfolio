@@ -6,6 +6,7 @@
 :root {
     display: flex;
     flex-direction: column;
+    overflow: hidden scroll;
 
     color: var(--text);
     background-image: repeating-linear-gradient(
@@ -21,6 +22,7 @@
 
 body {
     margin: 0px;
+    overflow: hidden;
 }
 
 #navbar ~ * {
@@ -51,6 +53,7 @@ button {
     align-items: center;
     justify-content: center;
     border: none;
+    text-wrap: nowrap;
 
     color: var(--text);
     background-color: color-mix(var(--surface) 60%, transparent);
@@ -118,8 +121,17 @@ button:active {
     position: absolute;
 }
 
+#navbar-items {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    column-gap: 8px;
+    overflow-x: scroll;
+}
+
 #lang-selector {
     display: flex;
+    flex-shrink: 0;
     width: 2rem;
     height: 1rem;
     padding: 0px;
