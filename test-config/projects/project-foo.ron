@@ -20,12 +20,34 @@
     ],
     description: Loc(
         en_us: "
-This project is one of the projects of all time.
+This project is one of the projects of <b>all time</b>.
 It was made in Unity because Unity is one of the game engines.
+
+<iframe
+    width=\"846\"
+    height=\"476\"
+    src=\"https://www.youtube.com/embed/sOzM4ClFG1o\"
+    title=\"Tidus Fantasy X OST\"
+    frameborder=\"0\"
+    allow=\"accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\"
+    referrerpolicy=\"strict-origin-when-cross-origin\"
+    allowfullscreen
+></iframe>
         ",
         fr_fr: "
-Ce project est un des projets de tous les temps.
+Ce project est un des projets de <b>tous les temps</b>.
 Il est fait sur Unity, car Unity est un des moteurs de jeu.
+
+<iframe
+    width=\"846\"
+    height=\"476\"
+    src=\"https://www.youtube.com/embed/sOzM4ClFG1o\"
+    title=\"Tidus Fantasy X OST\"
+    frameborder=\"0\"
+    allow=\"accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\"
+    referrerpolicy=\"strict-origin-when-cross-origin\"
+    allowfullscreen
+></iframe>
         ",
     ),
 )

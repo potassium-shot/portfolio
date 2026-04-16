@@ -66,6 +66,16 @@ pub fn PortfolioNavbar() -> Element {
 
                 div { flex_grow: 1 }
 
+                match &*portfolio.read() {
+                    Some(Ok(portfolio)) => rsx! {
+                        span {
+                            id: "contact",
+                            "Contact me: {portfolio.global_config.phone} | {portfolio.global_config.email}"
+                        }
+                    },
+                    _ => rsx! {},
+                }
+
                 button {
                     id: "lang-selector",
                     onclick: move |_| {

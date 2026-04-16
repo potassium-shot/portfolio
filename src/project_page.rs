@@ -74,9 +74,9 @@ fn ProjectPageContent(project: ProjectView) -> Element {
                 size: "original",
             }
 
-            p {
+            div {
                 id: "description",
-                "{project.description.resolve(lang())}"
+                dangerous_inner_html: "{project.description.resolve(lang())}",
             }
         }
     }

@@ -4,6 +4,8 @@ use crate::prelude::*;
 pub struct GlobalConfig {
     pub home_message: LocString,
     pub about_me: LocString,
+    pub phone: String,
+    pub email: String,
 }
 
 impl GlobalConfig {

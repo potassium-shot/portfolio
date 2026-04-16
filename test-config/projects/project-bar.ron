@@ -19,8 +19,30 @@
         "test-image-01",
     ],
     description: Loc(
-        en_us: "The project is a bar project, and it's different from Foo project.",
-        fr_fr: "Ce project est un project bar, et il est différent du projet Foo.",
+        en_us: "
+The project is a bar project, and it's different from Foo project.
+
+<br>
+<iframe
+    src=\"https://www.lexaloffle.com/bbs/widget.php?pid=15133\"
+    allowfullscreen
+    width=\"621\"
+    height=\"513\"
+    style=\"border:none; overflow:hidden\"
+></iframe>
+",
+        fr_fr: "
+Ce project est un project bar, et il est différent du projet Foo.
+
+<br>
+<iframe
+    src=\"https://www.lexaloffle.com/bbs/widget.php?pid=15133\"
+    allowfullscreen
+    width=\"621\"
+    height=\"513\"
+    style=\"border:none; overflow:hidden\"
+></iframe>
+",
     ),
     order: 10,
 )
