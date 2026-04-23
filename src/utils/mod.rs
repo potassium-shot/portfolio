@@ -4,6 +4,7 @@ use std::time::Duration;
 
 pub mod color;
 pub mod error;
+pub mod ext;
 pub mod loc_string;
 pub mod macros;
 

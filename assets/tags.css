@@ -25,3 +25,11 @@
     color: color-mix(var(--base) 30%, transparent);
     font-size: 12pt;
 }
+
+#tag.interactable {
+    cursor: pointer;
+}
+
+#tag[data-active="true"] {
+    background-color: red;
+}

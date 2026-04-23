@@ -1,6 +1,12 @@
+use std::collections::HashSet;
+
 use itertools::Itertools;
 
-use crate::{PortfolioContext, elements::project_card::ProjectCard, prelude::*};
+use crate::{
+    PortfolioContext,
+    elements::{project_card::ProjectCard, tag::Tag},
+    prelude::*,
+};
 
 pub const TITLE: LocStr = LocStr::Loc {
     en_us: "Home",
@@ -25,6 +31,8 @@ pub fn Home() -> Element {
         _ => String::new(),
     });
 
+    let mut filters = use_signal(HashSet::<String>::new);
+
     rsx! {
         document::Link { rel: "stylesheet", href: crate::assets::HOME_CSS }
         div {
@@ -44,30 +52,51 @@ pub fn Home() -> Element {
                 "{msg}"
             }
 
-            div {
-                id: "project-list",
+            match &*portfolio.read() {
+                Some(Ok(portfolio)) => rsx! {
+                    div {
+                        id: "filters",
 
-                match &*portfolio.read() {
-                    Some(Ok(portfolio)) => rsx! {
+                        for (name, tag) in portfolio
+                            .tags
+                            .iter()
+                            .sorted_by(|(_, a), (_, b)| a.order.cmp(&b.order))
+                            .map(|(name, tag)| (name.clone(), tag))
+                        {
+                            Tag {
+                                tag_id: name.clone(),
+                                tag: tag.clone(),
+                                onclick: move |_| {
+                                    let mut f = filters.write();
+                                    f.toggle(name.clone());
+                                },
+                                active_list: ReadSignal::new(filters),
+                            }
+                        }
+                    }
+
+                    div {
+                        id: "project-list",
+
                         for (id, project) in portfolio.projects.iter().sorted_by(|(_, a), (_, b)| a.order.cmp(&b.order)) {
                             ProjectCard {
                                 project_id: id.clone(),
                                 project: project.clone(),
                             }
                         }
-                    },
-                    Some(Err(error)) => rsx! { p {
-                        id: "error",
-                        "Error, couldn't retrieve portfolio data.\n{error}"
-                    } },
-                    None => rsx! {
-                        for _ in 0..4 {
-                            div {
-                                id: "project-card-placeholder",
-                            }
+                    }
+                },
+                Some(Err(error)) => rsx! { p {
+                    id: "error",
+                    "Error, couldn't retrieve portfolio data.\n{error}"
+                } },
+                None => rsx! {
+                    for _ in 0..4 {
+                        div {
+                            id: "project-card-placeholder",
                         }
-                    },
-                }
+                    }
+                },
             }
         }
     }

@@ -9,6 +9,7 @@ pub(crate) use crate::{
     utils::{
         color::PortfolioColor,
         error::{Error, Result, ResultExt},
+        ext::*,
         loc_string::{Lang, LocStr, LocString},
     },
 };

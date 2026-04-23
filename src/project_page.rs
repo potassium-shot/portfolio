@@ -41,10 +41,12 @@ fn ProjectPageContent(project: ProjectView) -> Element {
     let lang = use_context::<Signal<Lang>>();
     let portfolio = use_context::<PortfolioContext>();
 
-    let tags = project
-        .tags
-        .iter()
-        .flat_map(|tag| portfolio.unwrap().unwrap().find_tag(tag.as_str()));
+    let tags = project.tags.iter().flat_map(|tag| {
+        Some((
+            tag.clone(),
+            portfolio.unwrap().unwrap().find_tag(tag.as_str())?,
+        ))
+    });
 
     rsx! {
         div {
@@ -61,8 +63,9 @@ fn ProjectPageContent(project: ProjectView) -> Element {
                 span {
                     id: "tags",
 
-                    for tag in tags {
+                    for (tag_id, tag) in tags {
                         Tag {
+                            tag_id: tag_id,
                             tag: tag,
                         }
                     }

@@ -2,6 +2,10 @@
     margin-top: 25px;
 }
 
+#filters {
+    margin-bottom: 1rem;
+}
+
 #project-list {
     display: flex;
     flex-direction: column;
